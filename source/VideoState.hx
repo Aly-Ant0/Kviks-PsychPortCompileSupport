@@ -1,4 +1,4 @@
-#if mobileC
+#if android
 import extension.webview.WebView;
 #end
 import flixel.FlxBasic;
@@ -10,7 +10,7 @@ class VideoState extends FlxBasic {
 	public function new(name:String) {
 		super();
 
-	        #if mobileC
+	        #if android
                 WebView.playVideo('file:///android_asset/' + name, true);
                 WebView.onComplete = function(){
 		        if (finishCallback != null){
