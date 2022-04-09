@@ -51,9 +51,9 @@ class StoryMenuState extends MusicBeatState
 
 	override function create()
 	{
-		#if MODS_ALLOWED
+        #if MODS_ALLOWED
 		Paths.destroyLoadedImages();
-		#end
+ 		#end	
 		WeekData.reloadWeekFiles(true);
 		if(curWeek >= WeekData.weeksList.length) curWeek = 0;
 		persistentUpdate = persistentDraw = true;
@@ -180,8 +180,8 @@ class StoryMenuState extends MusicBeatState
 		changeWeek();
 
 		#if mobileC
-		addVirtualPad(FULL, A_B);
-		#end
+        addVirtualPad(FULL, A_B);
+        #end
 
 		super.create();
 	}
@@ -298,19 +298,10 @@ class StoryMenuState extends MusicBeatState
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
 			PlayState.campaignMisses = 0;
-			var thisWeek:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[curWeek]);
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
-				if(thisWeek.showcutscene && !ClientPrefs.cutscene)
-				{
-					FreeplayState.destroyFreeplayVocals();
-					LoadingState.loadAndSwitchState(new VideoState('assets/videos/' + thisWeek.currentcutscene, new PlayState()));
-				}
-				else
-				{
-					FreeplayState.destroyFreeplayVocals();
-					LoadingState.loadAndSwitchState(new PlayState(), true);
-				}
+				LoadingState.loadAndSwitchState(new PlayState(), true);
+				FreeplayState.destroyFreeplayVocals();
 			});
 		} else {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
