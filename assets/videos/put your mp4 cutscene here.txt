@@ -1,0 +1,3 @@
+Requiriments:
+The video will in 1280x720 Resolution
+You need HTML too this work
